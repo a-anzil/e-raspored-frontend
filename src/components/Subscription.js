@@ -16,29 +16,31 @@ export class Subscription extends React.Component {
         return (
             <div className="Subscription">
                 <button className="button" disabled={this.state.disabled} onClick={async () => {
-                    this.setState({ value: "Učitavanje... (SW)", disabled: true });
+                    this.setState({ value: "...", disabled: true });
                     const register = await navigator.serviceWorker.ready;
 
-                    this.setState({ value: "Učitavanje... (Notification Permission)" });
                     const subscription = await register.pushManager.subscribe({
                         userVisibleOnly: true,
                         applicationServerKey: urlBase64ToUint8Array(PUBLIC_KEY)
                     });
 
-                    this.setState({ value: "Učitavanje... (Backend Communication)" });
                     const res = await fetch(URL, {
                         method: "POST",
-                        mode: "cors",
-                        body: JSON.stringify(subscription),
+                        body: JSON.stringify({
+                            practicalGroup: "1",
+                            group: "ethics",
+                            subscription
+                        }),
                         headers: {
                             "Content-Type": "application/json"
                         }
                     });
 
                     this.setState({ value: await res.text() });
-                    await console.log("Notifikacije omogućene");
                 }}>
-                    {this.state.value}
+                    <b>
+                        {this.state.value}
+                    </b>
                 </button>
             </div>
         );
