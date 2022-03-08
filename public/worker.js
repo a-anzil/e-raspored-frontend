@@ -3,5 +3,5 @@
 self.addEventListener("push", event => {
     const data = event.data.json();
     const { title, ...options } = data;
-    return self.registration.showNotification(data.title, options);
+    event.waitUntil(self.registration.showNotification(data.title, options));
 });

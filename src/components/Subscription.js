@@ -36,7 +36,7 @@ export class Subscription extends React.Component {
                         }
                     });
 
-                    this.setState({ value: await res.text() });
+                    this.setState({ value: await res.text(), disabled: false });
                 }}>
                     <b>
                         {this.state.value}
