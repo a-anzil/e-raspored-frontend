@@ -4,12 +4,9 @@ self.addEventListener("push", event => {
     const data = event.data.json();
     const { title, ...options } = data;
 
-    event.waitUntil(async () => {
-        const notifications = await self.registration.getNotifications();
-        for (const notification of notifications) {
-            notification.close();
-        }
-
-        await self.registration.showNotification(data.title, options);
-    });
+    event.waitUntil(
+        self.registration.getNotifications()
+            .then(notifications => notifications.forEach(n => n.close()))
+            .then(() => self.registration.showNotification(title, options))
+    );
 });
