@@ -1,7 +1,9 @@
 import "./App.css";
-import { Subscription } from "./components/Subscription";
 import { useSearchParams } from "react-router-dom";
 import { LoginButton } from "./components/LoginButton";
+import { Subscription } from "./components/Subscription";
+import { UserInfo } from "./components/UserInfo";
+import { Events } from "./components/Events";
 
 function App() {
     const [searchParams] = useSearchParams();
@@ -21,7 +23,13 @@ function App() {
             </header>
 
             <div className="App-body">
-                {key ? <Subscription/> : <LoginButton/>}
+                {key ? (
+                    <div>
+                        <Subscription/>
+                        <UserInfo/>
+                        <Events/>
+                    </div>
+                ) : <LoginButton/>}
             </div>
 
             <footer className="App-footer">

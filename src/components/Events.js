@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 const URL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8787/user"
-    : "https://schedule.antonio32a.workers.dev/user";
+    ? "http://localhost:8787/user/events"
+    : "https://schedule.antonio32a.workers.dev/user/events";
 
-export const UserInfo = () => {
-    const [user, setUser] = useState(null);
+export const Events = () => {
+    const [events, setEvents] = useState(null);
 
     useEffect(() => {
         const key = localStorage.getItem("key");
@@ -15,20 +15,32 @@ export const UserInfo = () => {
             }
         })
             .then(response => response.json())
-            .then(data => setUser(data));
+            .then(data => {
+                console.log(data)
+                setEvents(data)
+            });
     }, []);
 
     return (
         <div>
-            {user ? (
+            {events ? (
                 <div>
-                    <p>ID: {user.id}</p>
-                    <p>Google ID: {user.googleId}</p>
-                    <p>Ime: {user.name}</p>
+                    {events.map(event => {
+                        return (
+                            <div>
+                                <p>ID: {event.id}</p>
+                                <p>Ime: {event.name}</p>
+                                <p>Lokacija: {event.location}</p>
+                                <p>Početak: {new Date(event.startTime).toLocaleString()}</p>
+                                <p>Kraj: {new Date(event.endTime).toLocaleString()}</p>
+                                <p>Ponavljanje: {event.recurrence}</p>
+                                <p>Korisnik: {event.userId}</p>
+                            </div>
+                         );
+                    })}
                 </div>
-            ) : (
-                <p>Učitavanje...</p>
-            )}
+            ) : "Učitavanje..."}
         </div>
     );
 };
+
