@@ -3,8 +3,8 @@ import "./Subscription.css";
 
 const PUBLIC_KEY = "BPKNDvpUZnuYNqoOeXDHDXyB28wGjjYrsE0GgwuveOfbweB5hLF7klx43zMb4IcO1lDgxMTMoZXK8E09Df6MOfk";
 const URL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8787/subscribe"
-    : "https://schedule.antonio32a.workers.dev/subscribe";
+    ? "http://localhost:8787/user/subscribe"
+    : "https://schedule.antonio32a.workers.dev/user/subscribe";
 
 export class Subscription extends React.Component {
     constructor(props) {
@@ -26,13 +26,10 @@ export class Subscription extends React.Component {
 
                     const res = await fetch(URL, {
                         method: "POST",
-                        body: JSON.stringify({
-                            practicalGroup: "1",
-                            group: "ethics",
-                            subscription
-                        }),
+                        body: JSON.stringify(subscription),
                         headers: {
-                            "Content-Type": "application/json"
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${localStorage.getItem("key")}`
                         }
                     });
 
