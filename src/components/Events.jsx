@@ -15,10 +15,7 @@ export const Events = () => {
             }
         })
             .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                setEvents(data)
-            });
+            .then(data => setEvents(data));
     }, []);
 
     return (
@@ -39,7 +36,7 @@ export const Events = () => {
                          );
                     })}
                 </div>
-            ) : "Učitavanje..."}
+            ) : "..."}
         </div>
     );
 };

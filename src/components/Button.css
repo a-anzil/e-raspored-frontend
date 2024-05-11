@@ -1,0 +1,18 @@
+.button {
+    background-color: #4da6cc;
+    border: none;
+    color: white;
+    height: 10%;
+    width: 100%;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2em;
+    border-radius: 8px;
+}
+
+.inactive {
+    background-color: rgba(58, 58, 58, 0.31);
+}

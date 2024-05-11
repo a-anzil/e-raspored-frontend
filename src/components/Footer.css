@@ -1,0 +1,45 @@
+.Footer {
+    position: fixed;
+    left: 2em;
+    right: 2em;
+    bottom: 0;
+    margin: 0 2em 2em 2em;
+}
+
+.Footer a {
+    color: rgb(var(--dark-color));
+    text-decoration: none;
+    transition: color 0.4s;
+}
+
+.Footer a:hover {
+    color: rgb(var(--main-color));
+    transition: color 0.4s;
+}
+
+.Footer p {
+    font-size: 1.2em;
+}
+
+.Footer .items {
+    border-top: rgb(var(--main-color)) 1px solid;
+    display: flex;
+    padding-top: 1.5em;
+    justify-content: space-between
+}
+
+.Footer .social-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.Footer .social-icons svg {
+    fill: rgb(var(--dark-color));
+    transition: fill 0.4s;
+}
+
+.Footer .social-icons *:hover {
+    fill: rgb(var(--main-color));
+    transition: fill 0.4s;
+}

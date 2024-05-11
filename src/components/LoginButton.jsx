@@ -1,14 +1,12 @@
 import React from "react";
-
-const URL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8787/login-redirect"
-    : "https://schedule.antonio32a.workers.dev/login-redirect";
+import { BASE_URL } from "../lib/utils";
+import "./LoginButton.css";
 
 export class LoginButton extends React.Component {
     render() {
         return (
             <div className="LoginButton">
-                <button className="gsi-material-button" onClick={() => window.location.href = URL}>
+                <button className="gsi-material-button" onClick={() => window.location.href = BASE_URL + "/login-redirect"}>
                     <div className="gsi-material-button-state"></div>
                     <div className="gsi-material-button-content-wrapper">
                         <div className="gsi-material-button-icon">

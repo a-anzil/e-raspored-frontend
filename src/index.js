@@ -1,18 +1,29 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import { Root } from "./pages/root";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { User } from "./pages/user";
 
 ReactDOM.render(
-    <React.StrictMode>
+    <StrictMode>
         <BrowserRouter>
-            <App/>
+            <Header/>
+            <div className="content">
+                <Routes>
+                    <Route path="/" index element={<Root/>}/>
+                    <Route path="/user" element={<User/>}/>
+                </Routes>
+            </div>
+            <Footer/>
         </BrowserRouter>
-    </React.StrictMode>,
+    </StrictMode>,
     document.getElementById("root")
 );
+
 
 const workerPath = `${process.env.PUBLIC_URL}/worker.js`;
 if ("serviceWorker" in navigator) {
