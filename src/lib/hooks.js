@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-
-export const getKey = () => localStorage.getItem("key");
-
-export const BASE_URL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8787"
-    : "https://schedule.antonio32a.workers.dev";
-
+import { fetchWithAuth, getKey } from "./utils";
 
 export const useUser = () => {
     const [user, setUser] = useState(null);
@@ -18,18 +12,14 @@ export const useUser = () => {
             return;
         }
 
-        fetch(BASE_URL + "/user", {
-            headers: {
-                authorization: `Bearer ${key}`
-            }
-        })
+        fetchWithAuth("/user")
             .then(response => {
                 if (!response.ok) {
                     localStorage.removeItem("key");
                     return null;
                 }
 
-                return response.json()
+                return response.json();
             })
             .then(data => {
                 setUser(data);

@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
-
-const URL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8787/user/events"
-    : "https://schedule.antonio32a.workers.dev/user/events";
+import { fetchWithAuth } from "../lib/utils";
 
 export const Events = () => {
     const [events, setEvents] = useState(null);
 
     useEffect(() => {
-        const key = localStorage.getItem("key");
-        fetch(URL, {
-            headers: {
-                authorization: `Bearer ${key}`
-            }
-        })
+        fetchWithAuth("/user/events")
             .then(response => response.json())
             .then(data => setEvents(data));
     }, []);
@@ -25,7 +17,6 @@ export const Events = () => {
                     {events.map(event => {
                         return (
                             <div>
-                                <p>ID: {event.id}</p>
                                 <p>Ime: {event.name}</p>
                                 <p>Lokacija: {event.location}</p>
                                 <p>Početak: {new Date(event.startTime).toLocaleString()}</p>
@@ -33,11 +24,10 @@ export const Events = () => {
                                 <p>Ponavljanje: {event.recurrence}</p>
                                 <p>Korisnik: {event.userId}</p>
                             </div>
-                         );
+                        );
                     })}
                 </div>
             ) : "..."}
         </div>
     );
 };
-

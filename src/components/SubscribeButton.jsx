@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import "./Button.css";
+import { fetchWithAuth } from "../lib/utils";
 
 const PUBLIC_KEY = "BPKNDvpUZnuYNqoOeXDHDXyB28wGjjYrsE0GgwuveOfbweB5hLF7klx43zMb4IcO1lDgxMTMoZXK8E09Df6MOfk";
-const URL = process.env.NODE_ENV === "development"
-    ? "http://localhost:8787/user/subscribe"
-    : "https://schedule.antonio32a.workers.dev/user/subscribe";
 
 export const SubscribeButton = props => {
     const [state, setState] = useState({ value: "Omogući Notifikacije", disabled: false });
@@ -20,13 +17,9 @@ export const SubscribeButton = props => {
                     applicationServerKey: urlBase64ToUint8Array(PUBLIC_KEY)
                 });
 
-                const res = await fetch(URL, {
+                const res = await fetchWithAuth("/user/subscribe", {
                     method: "POST",
-                    body: JSON.stringify(subscription),
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("key")}`
-                    }
+                    body: JSON.stringify(subscription)
                 });
 
                 let text;

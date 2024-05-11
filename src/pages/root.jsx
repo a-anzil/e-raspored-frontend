@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import { Events } from "../components/Events";
 
 export const Root = () => {
     const [searchParams] = useSearchParams();
@@ -14,7 +15,7 @@ export const Root = () => {
     }
 
     if (key) {
-        // return <Events/>;
+        return <Events/>;
     }
 
     return (
