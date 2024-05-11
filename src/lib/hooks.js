@@ -23,7 +23,14 @@ export const useUser = () => {
                 authorization: `Bearer ${key}`
             }
         })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    localStorage.removeItem("key");
+                    return null;
+                }
+
+                return response.json()
+            })
             .then(data => {
                 setUser(data);
                 setLoading(false);
