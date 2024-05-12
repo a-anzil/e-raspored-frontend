@@ -1,0 +1,39 @@
+.Events .Event {
+    margin: 1em 0;
+    background-color: white;
+    padding: 1em;
+    border-radius: 0.4em;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.Events .upcoming {
+    border: 0.15em solid rgba(var(--main-color), 25%);
+}
+
+.Events .running {
+    border: 0.15em solid rgba(var(--secondary-color), 25%);
+}
+
+.Events .Event .name {
+    word-break: break-word;
+    line-height: 1.2em;
+    font-size: 2em;
+    font-weight: 800;
+    margin: 0;
+    transition: color 0.6s;
+}
+
+.Events .Event .description {
+    word-break: break-word;
+    font-size: 1.5em;
+    word-wrap: break-word;
+}
+
+.Events .Event strong {
+    color: rgb(var(--main-color));
+}
+
+.Events .Event:hover .name {
+    color: rgb(var(--main-color));
+    transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}

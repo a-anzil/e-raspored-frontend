@@ -3,6 +3,7 @@ import { LoginButton } from "../components/LoginButton";
 import { useUser } from "../lib/hooks";
 import { useNavigate } from "react-router-dom";
 import "../components/Button.css";
+import { getLoginUrl } from "../lib/utils";
 
 export const User = () => {
     const navigate = useNavigate();
@@ -23,6 +24,13 @@ export const User = () => {
                     localStorage.removeItem("firstVisit");
                 }
             }}/>
+
+            <button onClick={() => {
+                localStorage.removeItem("key");
+                window.location.href = getLoginUrl();
+            }} className="button generic">
+                Sinkroniziraj kalendar
+            </button>
 
             <button onClick={() => {
                 localStorage.removeItem("key");

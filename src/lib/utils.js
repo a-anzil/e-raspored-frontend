@@ -4,6 +4,8 @@ export const BASE_URL = process.env.NODE_ENV === "development"
 
 export const getKey = () => localStorage.getItem("key")
 
+export const getLoginUrl = () => BASE_URL + "/login-redirect";
+
 export const fetchWithAuth = (url, props = {}) => fetch(BASE_URL + url, {
     ...props,
     headers: {

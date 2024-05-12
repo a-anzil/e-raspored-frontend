@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { Events } from "../components/Events";
+import { Placeholder } from "../components/Placeholder";
 
 export const Root = () => {
     const [searchParams] = useSearchParams();
@@ -14,14 +15,5 @@ export const Root = () => {
         key = localStorage.getItem("key");
     }
 
-    if (key) {
-        return <Events/>;
-    }
-
-    return (
-        <div>
-            <p>Dobrodošli na stranicu e-Raspored!</p>
-            <p>Prijava je potrebna za pristup sadržaju.</p>
-        </div>
-    );
+    return key ? <Events/> : <Placeholder/>;
 };
