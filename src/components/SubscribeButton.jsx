@@ -10,8 +10,8 @@ export const SubscribeButton = props => {
         <div className="SubscribeButton">
             <button className="button" disabled={state.disabled} onClick={async () => {
                 setState({ value: "...", disabled: true });
-                const register = await navigator.serviceWorker.ready;
 
+                const register = await navigator.serviceWorker.ready;
                 const subscription = await register.pushManager.subscribe({
                     userVisibleOnly: true,
                     applicationServerKey: urlBase64ToUint8Array(PUBLIC_KEY)
