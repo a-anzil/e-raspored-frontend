@@ -1,7 +1,7 @@
 import "./Footer.css";
 import { Github } from "./icons";
 
-const GITHUB = "https://github.com";
+const GITHUB = "https://github.com/a-anzil/e-raspored";
 
 export const Footer = () => (
     <footer className="Footer">
