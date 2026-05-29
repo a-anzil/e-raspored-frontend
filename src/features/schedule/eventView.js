@@ -2,13 +2,16 @@ export const STATUS_RUNNING = "running";
 export const STATUS_UPCOMING = "upcoming";
 export const STATUS_NONE = "";
 
-const formatTime = (rrule, reference) => {
-    const nextOccurrence = rrule.after(reference);
-    if (!nextOccurrence) return "";
-    return nextOccurrence.toLocaleString("hr-HR", {
-        hour: "numeric",
-        minute: "numeric"
-    });
+const formatClock = date => date.toLocaleString("hr-HR", {
+    hour: "numeric",
+    minute: "numeric"
+});
+
+const formatTimeRange = (event, reference) => {
+    const start = event.rrule.after(reference);
+    if (!start) return "";
+    const end = new Date(start.getTime() + (event.endTime - event.startTime));
+    return `${formatClock(start)} – ${formatClock(end)}`;
 };
 
 const startOfDay = now => {
@@ -22,7 +25,7 @@ export const buildEventViewModel = (event, { running, upcoming }, now) => {
         return {
             statusLabel: "Trenutno traje",
             statusKind: STATUS_RUNNING,
-            timeText: "",
+            timeText: formatTimeRange(event, startOfDay(now)),
             location: event.location ?? ""
         };
     }
@@ -31,7 +34,7 @@ export const buildEventViewModel = (event, { running, upcoming }, now) => {
         return {
             statusLabel: "Uskoro",
             statusKind: STATUS_UPCOMING,
-            timeText: formatTime(event.rrule, now),
+            timeText: formatTimeRange(event, now),
             location: event.location ?? ""
         };
     }
@@ -39,7 +42,7 @@ export const buildEventViewModel = (event, { running, upcoming }, now) => {
     return {
         statusLabel: "",
         statusKind: STATUS_NONE,
-        timeText: formatTime(event.rrule, startOfDay(now)),
+        timeText: formatTimeRange(event, startOfDay(now)),
         location: event.location ?? ""
     };
 };
