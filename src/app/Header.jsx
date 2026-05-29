@@ -1,15 +1,21 @@
 import "./Header.css";
 import { LoginButton } from "../features/auth/LoginButton";
 import { useUser } from "../features/auth/useUser";
+import { Avatar } from "../shared/Avatar";
 import { Link } from "react-router-dom";
 
 export const Header = () => {
     const [user, loading] = useUser();
     let loginState;
     if (loading) {
-        loginState = <p>...</p>;
+        loginState = <span className="loading">...</span>;
     } else if (user) {
-        loginState = <Link to="/user">{user.name}</Link>;
+        loginState = (
+            <Link className="user" to="/user">
+                <Avatar name={user.name} src={user.picture}/>
+                <span className="user-name">{user.name}</span>
+            </Link>
+        );
     } else {
         loginState = <LoginButton/>;
     }
@@ -22,19 +28,10 @@ export const Header = () => {
                     <h1 className="gradient-color">e-Raspored</h1>
                 </Link>
 
-                <div className="login page">
+                <div className="login">
                     {loginState}
                 </div>
             </div>
         </header>
     );
 };
-
-/*
-                <Link className="page" to="/">
-                    <p><strong>oi</strong></p>
-                </Link>
-                <Link className="page" to="/">
-                    <p><strong>oi</strong></p>
-                </Link>
- */

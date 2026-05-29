@@ -20,24 +20,42 @@
 .Header .items {
     display: flex;
     align-items: center;
-    position: relative;
-    margin-left: 2%;
-    margin-right: 2%;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 1.5rem;
 }
 
 .Header .login {
     display: flex;
     align-items: center;
-    margin-left: 2%;
-}
-
-.Header .items *:first-child {
-    margin-inline-end: auto;
 }
 
 .Header .logo {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+}
+
+.Header .user {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 999px;
+    transition: background-color 0.2s;
+}
+
+.Header .user:hover {
+    background-color: rgba(var(--main-color), 8%);
+}
+
+.Header .user-name {
+    color: rgb(var(--dark-color));
+    font-weight: 500;
+}
+
+.Header .loading {
+    color: rgb(var(--secondary-color));
 }
 
 .Header .page {
