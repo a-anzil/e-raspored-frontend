@@ -3,21 +3,28 @@ import { LoginButton } from "../features/auth/LoginButton";
 import { useUser } from "../features/auth/useUser";
 import { useSubscription } from "../shared/useSubscription";
 import { subscribeToPush, SUBSCRIBED } from "../shared/push";
-import { getLoginUrl } from "../shared/http";
+import { markResyncPending, forceLogin, REAUTH, resync } from "../shared/sync";
+import { buildCreateEventUrl } from "../shared/createEventUrl";
 import { Account } from "../features/account/Account";
 
 export const User = () => {
     const [user, loading] = useUser();
     const [isSubscribed, subscriptionLoading, setIsSubscribed] = useSubscription();
     const [working, setWorking] = useState(false);
+    const [syncWorking, setSyncWorking] = useState(false);
     const [note, setNote] = useState(null);
 
     if (loading) return <p>...</p>;
     if (!user) return <LoginButton/>;
 
-    const sync = () => {
-        localStorage.removeItem("key");
-        window.location.href = getLoginUrl();
+    const sync = async () => {
+        setSyncWorking(true);
+        const result = await resync();
+        if (result.kind === REAUTH) {
+            forceLogin();
+            return;
+        }
+        setSyncWorking(false);
     };
 
     const logOut = () => {
@@ -44,7 +51,10 @@ export const User = () => {
             isSubscribed={isSubscribed}
             subscriptionLoading={subscriptionLoading}
             working={working}
+            syncWorking={syncWorking}
             note={note}
+            createEventUrl={buildCreateEventUrl()}
+            onCreateEvent={markResyncPending}
             onSync={sync}
             onLogOut={logOut}
             onEnableNotifications={enableNotifications}

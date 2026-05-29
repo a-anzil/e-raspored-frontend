@@ -6,7 +6,10 @@ export const Account = ({
     isSubscribed,
     subscriptionLoading,
     working,
+    syncWorking,
     note,
+    createEventUrl,
+    onCreateEvent,
     onSync,
     onLogOut,
     onEnableNotifications
@@ -17,9 +20,18 @@ export const Account = ({
         <section className="setting">
             <h2>Kalendar</h2>
             <p className="status">Tvoj kalendar je sinkroniziran.</p>
-            <button className="button" onClick={onSync}>
-                Sinkroniziraj kalendar
+            <button className="button" disabled={syncWorking} onClick={onSync}>
+                {syncWorking ? "..." : "Sinkroniziraj kalendar"}
             </button>
+            <a
+                className="button secondary"
+                href={createEventUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={onCreateEvent}
+            >
+                Dodaj događaj
+            </a>
         </section>
 
         <section className="setting">

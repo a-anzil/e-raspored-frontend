@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { fetchWithAuth, getLoginUrl } from "../../shared/http";
+import { useCallback, useEffect, useState } from "react";
+import { fetchWithAuth } from "../../shared/http";
+import { clearResyncPending, forceLogin, isResyncPending, REAUTH, resync } from "../../shared/sync";
 import { rrulestr } from "rrule";
 import { classifyEmptyState, FREE_DAY, NO_SCHEDULE } from "./emptyState";
 import { buildEventViewModel } from "./eventView";
@@ -15,12 +16,35 @@ export const Events = () => {
             .then(data => setEvents(data));
     }, []);
 
+    const sync = useCallback(async () => {
+        const result = await resync();
+        if (result.kind === REAUTH) {
+            forceLogin();
+            return;
+        }
+        setEvents(result.events);
+    }, []);
+
+    useEffect(() => {
+        const onReturn = () => {
+            if (document.visibilityState !== "visible" || !isResyncPending()) return;
+            clearResyncPending();
+            sync();
+        };
+        document.addEventListener("visibilitychange", onReturn);
+        window.addEventListener("focus", onReturn);
+        return () => {
+            document.removeEventListener("visibilitychange", onReturn);
+            window.removeEventListener("focus", onReturn);
+        };
+    }, [sync]);
+
     if (!events) {
         return <p>...</p>;
     }
 
     const state = classifyEmptyState(events);
-    if (state === NO_SCHEDULE) return <NoSchedule/>;
+    if (state === NO_SCHEDULE) return <NoSchedule onSync={sync}/>;
     if (state === FREE_DAY) return <FreeDay/>;
 
     const today = new Date();
@@ -76,16 +100,13 @@ const FreeDay = () => (
     </div>
 );
 
-const NoSchedule = () => (
+const NoSchedule = ({ onSync }) => (
     <div className="Events empty">
         <h1>Današnji raspored</h1>
         <div className="empty-card">
             <h2>Još nemaš raspored</h2>
             <p>Izgleda da nema spremljenih sati. Sinkroniziraj svoj kalendar!.</p>
-            <button className="button" onClick={() => {
-                localStorage.removeItem("key");
-                window.location.href = getLoginUrl();
-            }}>
+            <button className="button" onClick={onSync}>
                 Sinkroniziraj kalendar
             </button>
         </div>

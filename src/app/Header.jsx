@@ -2,7 +2,23 @@ import "./Header.css";
 import { LoginButton } from "../features/auth/LoginButton";
 import { useUser } from "../features/auth/useUser";
 import { Avatar } from "../shared/Avatar";
+import { Plus } from "../shared/icons";
+import { buildCreateEventUrl } from "../shared/createEventUrl";
+import { markResyncPending } from "../shared/sync";
 import { Link } from "react-router-dom";
+
+const CreateEventLink = () => (
+    <a
+        className="create-event"
+        href={buildCreateEventUrl()}
+        target="_blank"
+        rel="noreferrer"
+        onClick={markResyncPending}
+    >
+        <Plus/>
+        <span>Dodaj događaj</span>
+    </a>
+);
 
 export const Header = () => {
     const [user, loading] = useUser();
@@ -29,6 +45,7 @@ export const Header = () => {
                 </Link>
 
                 <div className="login">
+                    {user && <CreateEventLink/>}
                     {loginState}
                 </div>
             </div>
