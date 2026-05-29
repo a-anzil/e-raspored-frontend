@@ -1,5 +1,5 @@
 import React from "react";
-import { getLoginUrl } from "../lib/utils";
+import { getLoginUrl } from "../../shared/http";
 import "./LoginButton.css";
 
 export class LoginButton extends React.Component {

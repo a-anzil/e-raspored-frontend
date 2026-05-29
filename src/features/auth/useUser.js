@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchWithAuth, getKey } from "./utils";
+import { fetchWithAuth, getKey } from "../../shared/http";
 
 export const useUser = () => {
     const [user, setUser] = useState(null);

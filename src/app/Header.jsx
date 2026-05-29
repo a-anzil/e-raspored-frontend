@@ -1,6 +1,6 @@
 import "./Header.css";
-import { LoginButton } from "./LoginButton";
-import { useUser } from "../lib/hooks";
+import { LoginButton } from "../features/auth/LoginButton";
+import { useUser } from "../features/auth/useUser";
 import { Link } from "react-router-dom";
 
 export const Header = () => {

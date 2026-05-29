@@ -1,0 +1,43 @@
+.Welcome {
+    width: 100%;
+    max-width: 32em;
+    margin: 0 auto;
+}
+
+.Welcome .card {
+    background-color: white;
+    border: 1px solid rgba(var(--main-color), 0.15);
+    border-radius: 0.8em;
+    padding: 2em;
+    text-align: center;
+    box-shadow: 0 10px 25px -12px rgba(var(--main-color), 0.35);
+}
+
+.Welcome h1 {
+    font-size: 2.2em;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}
+
+.Welcome .lead {
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: rgba(var(--dark-color), 0.8);
+    margin-bottom: 1.5em;
+}
+
+.Welcome .login-action {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.Welcome .login-action .gsi-material-button {
+    height: 48px;
+    font-size: 16px;
+}
+
+.Welcome .note {
+    font-size: 0.95em;
+    color: rgba(var(--dark-color), 0.55);
+}

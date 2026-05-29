@@ -4,8 +4,8 @@ import "./index.css";
 import { Root } from "./pages/root";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
+import { Header } from "./app/Header";
+import { Footer } from "./app/Footer";
 import { User } from "./pages/user";
 
 const root = createRoot(document.getElementById("root"));

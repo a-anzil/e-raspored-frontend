@@ -1,5 +1,5 @@
 import "./Footer.css";
-import { Github } from "./icons";
+import { Github } from "../shared/icons";
 
 const GITHUB = "https://github.com/a-anzil/e-raspored";
 
@@ -13,7 +13,7 @@ export const Footer = () => (
             </div>
 
             <p>
-                Antonio Anzil @ 2024
+                Antonio Anzil @ {new Date().getFullYear()}
             </p>
         </div>
     </footer>

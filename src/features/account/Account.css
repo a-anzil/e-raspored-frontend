@@ -1,0 +1,41 @@
+.Account {
+    width: 100%;
+    max-width: 32em;
+    margin: 0 auto;
+}
+
+.Account h1 {
+    font-size: 2em;
+    margin-bottom: 0.8em;
+}
+
+.Account .setting {
+    background-color: white;
+    border: 1px solid rgba(var(--main-color), 0.15);
+    border-radius: 0.8em;
+    padding: 1.2em 1.5em;
+    margin-bottom: 1.2em;
+    box-shadow: 0 6px 18px -12px rgba(var(--main-color), 0.35);
+}
+
+.Account .setting h2 {
+    font-size: 1.3em;
+    margin-bottom: 0.4em;
+}
+
+.Account .setting .status {
+    font-size: 1.05em;
+    color: rgba(var(--dark-color), 0.75);
+    margin-bottom: 0.8em;
+}
+
+.Account .setting .note {
+    font-size: 1em;
+    color: rgba(var(--main-color), 0.9);
+    margin-bottom: 0.8em;
+}
+
+.Account .log-out {
+    margin-top: 1.5em;
+    font-size: 1.1em;
+}

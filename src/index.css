@@ -2,6 +2,10 @@
     --main-color: 124, 58, 237;
     --secondary-color: 218, 98, 196;
     --dark-color: 27, 31, 35;
+    --action-color: 77, 166, 204;
+    --action-color-hover: 67, 148, 184;
+    --action-color-active: 58, 130, 163;
+    --action-border: 62, 140, 174;
     --main-color-gradient: linear-gradient(45deg, rgb(var(--main-color)), rgb(var(--secondary-color)) 30%, white 60%);
 }
 
