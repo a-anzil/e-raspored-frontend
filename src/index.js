@@ -1,5 +1,5 @@
 import React, { StrictMode } from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import { Root } from "./pages/root";
 import reportWebVitals from "./reportWebVitals";
@@ -8,7 +8,8 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { User } from "./pages/user";
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("root"));
+root.render(
     <StrictMode>
         <BrowserRouter>
             <Header/>
@@ -20,8 +21,7 @@ ReactDOM.render(
             </div>
             <Footer/>
         </BrowserRouter>
-    </StrictMode>,
-    document.getElementById("root")
+    </StrictMode>
 );
 
 

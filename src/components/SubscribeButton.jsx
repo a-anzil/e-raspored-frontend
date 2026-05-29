@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { fetchWithAuth } from "../lib/utils";
 
-const PUBLIC_KEY = "BPKNDvpUZnuYNqoOeXDHDXyB28wGjjYrsE0GgwuveOfbweB5hLF7klx43zMb4IcO1lDgxMTMoZXK8E09Df6MOfk";
+const PUBLIC_KEY = "BKDHteUuTOeOEIvB_ter5WFYYhIYimwZU6Ep2N6Cnrqz-9EvXVvY7pfHYEXXZ7xIrHyGTkiMFvx7RvULjGaeB8Q";
 
 export const SubscribeButton = props => {
     const [state, setState] = useState({ value: "Omogući Notifikacije", disabled: false });
