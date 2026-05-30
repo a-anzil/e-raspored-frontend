@@ -1,9 +1,10 @@
 .Footer {
     position: fixed;
-    left: 2em;
-    right: 2em;
+    left: 0;
+    right: 0;
     bottom: 0;
-    margin: 0 2em 2em 2em;
+    z-index: 100;
+    background-color: #F6F6F6;
 }
 
 .Footer a {
@@ -24,7 +25,8 @@
 .Footer .items {
     border-top: rgb(var(--main-color)) 1px solid;
     display: flex;
-    padding-top: 1.5em;
+    margin: 0 4em;
+    padding: 1.5em 0 2em;
     justify-content: space-between
 }
 
