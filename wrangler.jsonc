@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "schedule-frontend",
+  "compatibility_date": "2026-05-07",
+  "workers_dev": true,
+  "assets": {
+    "directory": "./build",
+    "not_found_handling": "single-page-application"
+  },
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "e-raspored.anzil.dev",
+      "zone_name": "anzil.dev",
+      "custom_domain": true,
+      "enabled": true,
+      "previews_enabled": false
+    }
+  ]
+}
