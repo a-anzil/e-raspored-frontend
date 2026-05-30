@@ -1,0 +1,110 @@
+.SatSettingsEditor {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid rgba(var(--dark-color), 0.12);
+}
+
+.SatSettingsEditor .calendar-edit {
+    font-size: 1.1em;
+    margin: 0 0 0.4em;
+}
+
+.SatSettingsEditor .field {
+    margin: 0.8em 0;
+}
+
+.SatSettingsEditor .label {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 0.4em;
+    color: rgba(var(--dark-color), 0.8);
+}
+
+.SatSettingsEditor .offsets {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+}
+
+.SatSettingsEditor .offset {
+    flex: 1;
+    min-width: 4em;
+    padding: 0.5em;
+    background-color: transparent;
+    border: 2px solid rgba(var(--dark-color), 0.2);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 600;
+    color: rgba(var(--dark-color), 0.7);
+    cursor: pointer;
+    transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.SatSettingsEditor .offset.selected {
+    background-color: rgb(var(--main-color));
+    border-color: rgb(var(--main-color));
+    color: white;
+}
+
+.SatSettingsEditor .toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    margin: 0.6em 0;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.SatSettingsEditor .toggle input {
+    width: 1.2em;
+    height: 1.2em;
+    accent-color: rgb(var(--main-color));
+    cursor: pointer;
+}
+
+.SatSettingsEditor .icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(3em, 1fr));
+    gap: 0.5em;
+}
+
+.SatSettingsEditor .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4em;
+    background-color: transparent;
+    border: 2px solid rgba(var(--dark-color), 0.15);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.SatSettingsEditor .icon.selected {
+    border-color: rgb(var(--main-color));
+    background-color: rgba(var(--main-color), 0.08);
+}
+
+.SatSettingsEditor .icon img {
+    width: 2em;
+    height: 2em;
+    object-fit: contain;
+}
+
+.SatSettingsEditor .error {
+    color: rgb(var(--secondary-color));
+    font-weight: 600;
+    margin: 0.5em 0;
+}
+
+.SatSettingsEditor .actions {
+    display: flex;
+    gap: 0.6em;
+    margin-top: 1em;
+}
+
+.SatSettingsEditor .actions .button {
+    margin: 0;
+}

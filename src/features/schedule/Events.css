@@ -5,12 +5,38 @@
 }
 
 .Events .Event {
+    position: relative;
     margin: 1em 0;
     background-color: white;
     padding: 1em;
     border-radius: 0.4em;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
     border: 0.15em solid transparent;
+}
+
+.Events .Event .name {
+    padding-right: 4em;
+}
+
+.Events .Event .edit-settings {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    padding: 0.3em 0.9em;
+    background-color: transparent;
+    border: 2px solid rgba(var(--dark-color), 0.2);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 600;
+    color: rgba(var(--dark-color), 0.7);
+    cursor: pointer;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.Events .Event .edit-settings:hover {
+    background-color: rgba(var(--dark-color), 0.05);
+    border-color: rgba(var(--dark-color), 0.35);
 }
 
 .Events .upcoming {

@@ -4,6 +4,8 @@ import { clearResyncPending, forceLogin, isResyncPending, REAUTH, resync } from 
 import { rrulestr } from "rrule";
 import { classifyEmptyState, FREE_DAY, NO_SCHEDULE } from "./emptyState";
 import { buildEventViewModel } from "./eventView";
+import { resolveSettings } from "./settings";
+import { SatSettingsEditor } from "./SatSettingsEditor";
 import "./Events.css";
 import "../../shared/Button.css";
 
@@ -23,6 +25,13 @@ export const Events = () => {
             return;
         }
         setEvents(result.events);
+    }, []);
+
+    const saveSettings = useCallback((eventId, settings) => {
+        setEvents(prev => ({
+            ...prev,
+            settings: { ...prev.settings, [eventId]: settings }
+        }));
     }, []);
 
     useEffect(() => {
@@ -65,6 +74,8 @@ export const Events = () => {
                     event={event}
                     upcoming={events.upcoming.includes(event.id)}
                     running={events.currentlyRunning.includes(event.id)}
+                    settings={resolveSettings(events.settings?.[event.id])}
+                    onSaveSettings={saveSettings}
                     key={event.id}
                 />
             )}
@@ -72,11 +83,19 @@ export const Events = () => {
     );
 };
 
-const Event = ({ event, upcoming, running }) => {
+const Event = ({ event, upcoming, running, settings, onSaveSettings }) => {
     const vm = buildEventViewModel(event, { running, upcoming }, new Date());
+    const [editing, setEditing] = useState(false);
 
     return (
         <div className={"Event " + vm.statusKind}>
+            <button
+                type="button"
+                className="edit-settings"
+                onClick={() => setEditing(open => !open)}
+            >
+                {editing ? "Zatvori" : "Postavke"}
+            </button>
             <h2 className="name">{event.name}</h2>
             {vm.statusLabel &&
                 <p className={"status " + vm.statusKind}>{vm.statusLabel}</p>
@@ -86,6 +105,15 @@ const Event = ({ event, upcoming, running }) => {
                 {vm.location && <><br/><span className="location">{vm.location}</span></>}
                 {event.description && <><br/>{event.description}</>}
             </p>
+            {editing &&
+                <SatSettingsEditor
+                    eventId={event.id}
+                    editUrl={event.htmlLink}
+                    settings={settings}
+                    onSave={saved => onSaveSettings(event.id, saved)}
+                    onClose={() => setEditing(false)}
+                />
+            }
         </div>
     );
 };
