@@ -1,12 +1,17 @@
 /* eslint-disable no-restricted-globals */
 
 self.addEventListener("push", event => {
-    const data = event.data.json();
-    const { title, ...options } = data;
+    if (!event.data) return;
 
-    event.waitUntil(
-        self.registration.getNotifications()
-            .then(notifications => notifications.forEach(n => n.close()))
-            .then(() => self.registration.showNotification(title, options))
-    );
+    let data;
+    try {
+        data = event.data.json();
+    } catch (err) {
+        return;
+    }
+
+    if (data === null || typeof data !== "object") return;
+
+    const { title, ...options } = data;
+    event.waitUntil(self.registration.showNotification(title, options));
 });
